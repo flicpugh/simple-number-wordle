@@ -1,0 +1,54 @@
+print("welcome to number wordle!")
+print("we generate a 4 digit number (1000-9999) and you must guess")
+print("to make it more tricky we dont tell you what is right!")
+print()
+
+import random 
+y = ""
+correct = 0
+close = 0
+attempts = 0
+totalattempts = 0
+totalrounds = 0
+cont = True
+c = "c"
+while cont == True:
+  x = random.randint(1000,9999)
+  print(x)
+  while y!=str(x):
+    attempts+=1
+    while len(y) != 4:
+      y = (input("enter guess -> "))
+    if y == str(x):
+      print("congratulations ", y, " was the correct answer!")
+    else:
+      for z in range(4):
+        if y[z] == str(x)[z]:
+          correct+=1
+        elif y[z] in str(x):
+          close+=1
+      print(correct, " digits are in the right place")
+      print(close, " digits are in the string but not in the right place")
+      correct = 0 
+      close = 0
+      y=""
+  print("congratulations for completing this game!")
+  print("this round you took ", attempts, " attempts")
+  totalattempts +=attempts 
+  totalrounds += 1
+  attempts = 0
+  print()
+  while c != "y" and c != "n":
+    print("would you like to continue (y/n) ")
+    c = input()
+  if c == "n":
+    cont = False
+  y=""
+  c=""
+    
+print("thank you for playing!")
+print("you played ", totalrounds, " rounds")
+print("you took ", totalattempts, " attempts across all rounds")
+print("your average attempts = ", int(totalattempts/totalrounds))
+
+    
